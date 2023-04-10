@@ -1,3 +1,4 @@
+import 'package:bases_flutter/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -20,20 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-        appBar: AppBar ( title: Text("Garra Crema :"),elevation: 0,),
-        body: Center(
-          child: Container(
-            child: Text("Universitario de Deportes",style: TextStyle(fontSize: 20,fontWeight:FontWeight.bold),),
-            )
-            ),
-         bottomNavigationBar: BottomNavigationBar(items: const<BottomNavigationBarItem> [
-                BottomNavigationBarItem(icon:Icon(Icons.verified_user_outlined,),label: "User" ),
-                BottomNavigationBarItem(icon: Icon(Icons.settings),label: "Setting")
-
-         ],   
-            ),
-    )
+      home: HomeScreen() 
     );
   }
 }
