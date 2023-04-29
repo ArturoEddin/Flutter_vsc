@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
+
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
 
-  int currentPage = 0;
-  final PageController pageController = new PageController();
+  int currentPage = 1;
+  final PageController pageController = new PageController( initialPage: 1 );
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -17,23 +20,37 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
           title: Text("Garra Crema : " ),
           elevation: 0,
-          backgroundColor: Color.fromARGB(255, 187, 50, 41)),
-
+          backgroundColor: Color.fromARGB(255, 187, 50, 41)
+          ),
+      body: PageView(
+               controller:pageController ,
+               physics: NeverScrollableScrollPhysics(),
+               children: [
+                CustomScreen(color: Color.fromARGB(255, 229, 196, 152)),
+                CustomScreen(color: Color.fromARGB(255, 187, 50, 41)),
+                CustomScreen(color: Colors.white),
+      ]
+      ),
           
-     //
-     //
-
-      
       bottomNavigationBar: BottomNavigationBar(
+        
         currentIndex: currentPage,
         onTap: (index) {
+          
          currentPage =index;
-        
-         setState(() {}); 
-
-         pageController.animateToPage(index, duration: Duration(seconds: 5), curve: Curves.bounceOut);
+         
+         
+         
+        pageController.animateToPage(index, 
+         duration: Duration(seconds: 6), 
+         curve: Curves.bounceOut
+        );
+           
+        setState(() {}); 
            
         },
+
+        
         backgroundColor: Colors.black,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.white.withOpacity(0.5),
@@ -44,14 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
 
-        body: PageView(
-               controller:PageController() ,
-               physics: NeverScrollableScrollPhysics(),
-               children: [
-                CustomScreen(color: Color.fromARGB(255, 229, 196, 152)),
-                CustomScreen(color: Color.fromARGB(255, 187, 50, 41)),
-                CustomScreen(color: Colors.white),
-      ]),
+  
 
     );
   }
@@ -68,7 +78,7 @@ class CustomScreen extends StatelessWidget {
         color: color,
         child: Center(
           child: Text(
-            "Universitario de Deportes",
+            "Universitario de Deportes ",
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
         ));
